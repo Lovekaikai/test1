@@ -111,6 +111,53 @@
             </el-row>
       </template>
       <template slot="content" v-if="flag">
+        <template v-if="detailInfo.form_menu.menu.length>0">
+             <el-row :gutter="20" v-for="(item,index) in detailInfo.form_menu.menu" :key="index">
+              <el-col style="text-align: right;color:#9b9b9b;" :span="8">{{item.name}}</el-col>
+              <template v-if="item.type==='textarea'">
+                  <el-col style="color:#4a4a4a;" :span="16">
+                    {{item.origin_val}}
+                  </el-col>
+              </template>
+              <template v-if="item.type==='checkbox'">
+                  <el-col style="color:#4a4a4a;" :span="16">
+                    {{item.origin_val.join(",")}}
+                  </el-col>
+              </template>
+              <template v-if="item.type==='jl_select'">
+                  <el-col style="color:#4a4a4a;" :span="16">
+                      <template v-if="item.origin_val.length>0">
+                          <div v-for="(item1,index1) in item.opts" :key="index1">
+                              <template v-if="item.origin_val.join('')===item1.value">
+                                {{item1.value}}{{item.other_value||''}}
+                              </template>
+                          </div>
+                      </template>
+                  </el-col>
+              </template>
+              <template v-if="item.type==='jl_radio'">
+                  <el-col style="color:#4a4a4a;" :span="16">
+                      <template v-if="item.origin_val.length>0">
+                          <div v-for="(item1,index1) in item.opts" :key="index1">
+                              <template v-if="item.origin_val.join('')===item1.value">
+                                {{item1.value}}{{item.other_value||''}}
+                              </template>
+                          </div>
+                      </template>
+                  </el-col>
+              </template>
+                   <template v-if="item.type==='text'">
+                  <el-col style="color:#4a4a4a;" :span="16">
+                    {{item.origin_val}}
+                  </el-col>
+              </template>
+                <template v-if="item.type==='date'">
+                  <el-col style="color:#4a4a4a;" :span="16">
+                    {{item.origin_val}}
+                  </el-col>
+              </template>
+          </el-row>
+        </template>
       </template>
     </Right>
     <!-- end table -->
@@ -145,7 +192,8 @@ export default {
       recordObj: {},
       flag: 0,
       patrol_user_info: [],
-      title: '记录详情'
+      title: '记录详情',
+      detailInfo:{}
     }
   },
   components: {
@@ -162,8 +210,12 @@ export default {
       console.log(row)
     },
     textDetail (row) {
-      this.title = '内容详情'
+      console.log(row)
+      // this.detailInfo = row.patrol_info
+       this.title = '内容详情'
       this.flag = 1
+        this.detailInfo = {"danger_id":"HL4836","form_menu":{"des":"22xx2244","menu":[{"type":"textarea","input_key":"input1530843727000","must":0,"name":"多行文本","describe":"","placeholder":"","origin_val":"","origin_key":""},{"type":"checkbox","input_key":"input1530843731000","must":0,"name":"复选框","describe":"","opts":[{"value":"选项1","checked":0},{"value":"选项2","checked":0},{"value":"选项3","checked":0}],"origin_val":[],"origin_key":[]},{"type":"checkbox","input_key":"input1530843731000","must":0,"name":"复选框","describe":"","opts":[{"value":"选项1","checked":1},{"value":"选项2","checked":1}],"origin_val":["选项1","选项2"],"origin_key":[0,1]},{"type":"jl_select","input_key":"input1530843733000","must":0,"name":"下拉框","describe":"","opts":[{"value":"选项1","checked":1,"other":1,"subscribe":0},{"value":"选项2","checked":0,"other":0,"subscribe":0}],"origin_val":["选项1"],"origin_key":[0]},{"type":"jl_radio","input_key":"input1530843729000","must":0,"name":"单选框","describe":"","opts":[{"value":"选项1","checked":1,"other":0,"subscribe":0},{"value":"选项2","checked":0,"other":0,"subscribe":0}],"origin_val":["选项1"],"origin_key":[0]},{"type":"text","input_key":"input1530843725000","must":1,"name":"试试水","describe":"1","placeholder":"惺惺惜惺惺想","origin_val":"","origin_key":""},{"type":"date","input_key":"input1530843734000","must":0,"name":"日期","describe":"","placeholder":"2212","format":"date","default_val":0,"origin_val":"","origin_key":""},{"type":"checkbox","input_key":"input1530843731000","must":1,"name":"复选框","describe":"22xxxxxxxx","opts":[{"checked":0,"value":"22"},{"checked":0,"value":"3333"},{"checked":0,"value":"4444444"}],"origin_val":[],"origin_key":[]},{"type":"jl_radio","input_key":"input1530843729000","must":0,"name":"单选框","describe":"222","opts":[{"checked":0,"value":"2211","other":0,"subscribe":0},{"checked":0,"value":"2222","other":0,"subscribe":0},{"checked":0,"value":"222222222","other":0,"subscribe":0}],"origin_val":[],"origin_key":[]},{"type":"checkbox","input_key":"input1530843731000","must":1,"name":"复选框","describe":"","opts":[{"checked":0,"value":"221111111"},{"checked":0,"value":"爱茜搜索"},{"checked":0,"value":"擦擦擦"}],"origin_val":[],"origin_key":[]}]}}
+   
       this.showRight = true
     },
     hideRight () {

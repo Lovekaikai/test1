@@ -81,6 +81,8 @@ export default {
         this.dangers = []
         this.getTableList()
       } else {
+        this.dangerName = ''
+        this.dangers = []
         this.getTableList()
         this.dangerList(val)
       }

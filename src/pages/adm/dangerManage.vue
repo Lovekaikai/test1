@@ -115,14 +115,6 @@ export default {
       dangers: [{ label: '危险源1', value: 1 }, { label: '危险源2', value: 2 }, { label: '危险源3', value: 3 }],
       info: {
         data: [
-          { classify: '分类1', place: '地点1', danger_name: '危险源1', danger_code: '1', remark: '备注1' },
-          { classify: '分类1', place: '地点1', danger_name: '危险源1', danger_code: '1', remark: '备注1' },
-          { classify: '分类1', place: '地点1', danger_name: '危险源1', danger_code: '1', remark: '备注1' },
-          { classify: '分类1', place: '地点1', danger_name: '危险源1', danger_code: '1', remark: '备注1' },
-          { classify: '分类1', place: '地点1', danger_name: '危险源1', danger_code: '1', remark: '备注1' },
-          { classify: '分类1', place: '地点1', danger_name: '危险源1', danger_code: '1', remark: '备注1' },
-          { classify: '分类1', place: '地点1', danger_name: '危险源1', danger_code: '1', remark: '备注1' },
-          { classify: '分类1', place: '地点1', danger_name: '危险源1', danger_code: '1', remark: '备注1' }
         ],
         count: 20
       },
